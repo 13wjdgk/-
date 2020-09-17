@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>어서오세요! 가은이의 방명록입니당</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'js/fullpage.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/fullpage.min.js' %}"></script>
+    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+
+</head>
+
+<body>
+    <!-- 사이드바 -->
+    <!-- <input type="checkbox" id="menuicon">
+    <label for="menuicon">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
+    <div class="sidebar">
+        <form action="{% url 'add' %}" method="POST">
+            {% csrf_token %}
+        
+            <div class="input-group input-group-lg">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-lg">내용</span>
+                </div>
+                <input type="text" class="form-control" name="guest_say" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+            </div>
+            <button type="submit">추가하기</button>
+        </form> 
+        
+        {% for add in adds %}
+            {{add.guest_say}}
+        {% endfor %}
+    </div>-->
+    <!-- 풀페이지 -->
+    <div id="full-page">
+    
+        <div class="section s0 " style="background: url({% static 'image/다이어리.jpg' %});">
+            
+        </div>
+    
+        <div class="section s1 " style="background: url({% static 'image/다이어리1.jpg' %});">
+            
+        </div>   
+        
+        
+        <div class="section s2 "style="background: url({% static 'image/다이어리2.jpg' %});">
+            
+        </div>
+        <div class="section s3" style="background: url({% static 'image/다이어리3.jpg' %});">
+            
+        </div>
+        <div class="section s4 container" style="background: url({% static 'image/방명록.jpg' %});">
+            <div id="add" class="container">
+               <form action="{% url 'add' %}" method="POST">
+                {% csrf_token %}
+                    <div class="row">
+                        <div class="input-group input-group-lg">
+                            <input type="text" class="form-control" value="닉네임" onfocus="this.value=''" id="guest_name" name="guest_name" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+                            <input type="text" class="form-control" value="댓글을 입력하세요." onfocus="this.value=''" id="guest_say" name="guest_say" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+                        </div> 
+                    
+                        <div id="add1">
+                            <button type="submit" id="add_button"><strong>추가하기</strong></button>
+                        </div>
+                    </div>
+                </form>  
+            </div>
+            <div id="add2">
+                {% for add in adds %}
+                <div id="guest_say_list">
+                    {{add.guest_name}}  :  {{add.guest_say}}  
+                    <a href="{% url 'delete' add.id %}">삭제</a>
+                </div>
+                {% endfor %}
+            </div>
+            
+
+        </div>
+        
+    </div>
+    <script>
+        new fullpage('#full-page',{
+            
+        });
+    </script>
+</body>
+</html>
